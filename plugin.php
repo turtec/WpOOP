@@ -12,6 +12,7 @@ License: GPL
 require_once 'framework/Renderer/HTMLRenderer.php';
 require_once 'framework/Loader/ControllerLoader.php';
 require_once 'installer/PluginInstaller.php';
+require_once 'framework/Exceptions/ControllerClassNotFoundException.php';
 
 class WpOOP{
 	
@@ -41,10 +42,10 @@ class WpOOP{
 
             // load all included Controller
             if(is_admin()){
-                $path='controllerbackend';
+                $path='controller/backend';
             }
             else{
-                $path='controllerfrontend';
+                $path='controller/frontend';
             }
             self::loadController($path);
     }

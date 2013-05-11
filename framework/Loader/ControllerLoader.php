@@ -9,7 +9,7 @@
  * @author Sascha Turowski <turtec.de>
  */
 
-require ('Exceptions/ControllerClassNotFoundException.php');
+
 
 class ControllerLoader {
       
