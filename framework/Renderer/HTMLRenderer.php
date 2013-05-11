@@ -1,18 +1,12 @@
 <?php
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- * Description of HTMLRenderer
+ * Outputs a HMTL-Page
  *
  * @author Sascha Turowski <turtec.de>
  */
 class HTMLRenderer {
     
-     public static function renderHTML($thePath,$params){
+     public static function renderHTML($thePath,$params=null){
           ob_start();
 	  include_once $thePath;
           $output = ob_get_clean();
