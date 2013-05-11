@@ -32,7 +32,7 @@ class defaultController {
          * Default Callback-Method 
          */
         public function aCallbackMethod(){
-            $thePath='/../../viewsbackend/default.php';
+            $thePath='/../../views/backend/default.php';
             HTMLRenderer::renderHTML($thePath, $params);
         }    
         
