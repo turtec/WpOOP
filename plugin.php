@@ -10,7 +10,7 @@ License: GPL
 */
 
 require_once 'framework/HTMLRenderer.php';
-
+require_once 'framework/ControllerLoader.php';
 
     class WpOOP{
 	
@@ -46,8 +46,9 @@ require_once 'framework/HTMLRenderer.php';
          * loads all Admin-Controller
         **/
         private function loadAdminController(){
+            $dir= plugin_dir_path(__FILE__);
             $path='controllerbackend';
-            self::loadController($path);
+            ControllerLoader::loadControllers($path,$dir);
         }
         
         
@@ -55,32 +56,13 @@ require_once 'framework/HTMLRenderer.php';
          * loads all Frontend-Controller
         **/
         private function loadFrontendController(){
+            $dir= plugin_dir_path(__FILE__);
             $path='controllerfrontend';
-            self::loadController($path);
+            ControllerLoader::loadControllers($path,$dir);
         }
         
-        /**
-         * initalize a class by a given $path
-         * the class name has to be the same 
-         * like the filename
-         * @param type $path 
-         */
-        private function loadController($path){
-            $dir= plugin_dir_path(__FILE__);
-            foreach( glob($dir.'/'. $path .'/*.php' ) as $controllerPath ) {
-                include $controllerPath;
-                //get the filename form path
-                $fileName = basename($controllerPath);
-                //get the name without extentions
-                $parts=explode('.', $fileName);
-                $className=$parts[0]; 
-                //load the class
-                $myController = new $className(); 
-             }
-         }
+       
      }
- 
-
 
 WpOOP::getInstance();
 
