@@ -11,6 +11,9 @@ License: GPL
 
 require_once 'framework/HTMLRenderer.php';
 require_once 'framework/ControllerLoader.php';
+require_once 'installer/PluginInstaller.php';
+
+
 
     class WpOOP{
 	
@@ -20,28 +23,38 @@ require_once 'framework/ControllerLoader.php';
          * using the Singelton Pattern 
          */
         public function getInstance(){
-            	
-               if(self::$instance==null){
-                    return self::init();
-               }
-               else{
-                    return self::$instance;
-               }
+            
+            if(self::$instance==null){
+                return self::init();
+            }
+            else{
+                return self::$instance;
+            }    
         }
         
+      
         /**
          * initialize the Plugin 
          */
         private function init(){
+            
+             register_activation_hook(__FILE__,array( &$this,'install'));
+             register_deactivation_hook(__FILE__,array( &$this,'uninstall'));
+            
              if(is_admin()){
-                  $path='controllerbackend';
+                 $path='controllerbackend';
              }
              else{
                  $path='controllerfrontend';
              }
-              self::loadController($path);
+             self::loadController($path);
         }
  
+        
+        /**
+         * Loads all Plugin-Controllers
+         * @param type $path 
+         */
         private function loadController($path){
             $dir= plugin_dir_path(__FILE__);
             try{
@@ -50,6 +63,20 @@ require_once 'framework/ControllerLoader.php';
             catch(Exception $ex){
                 echo $ex->getMessage();
             }
+       }
+       
+       /**
+        * Install the Plugin 
+        */
+       private function install(){
+           PluginInstaller::createDb();
+       }
+       
+       /**
+        * Uninstall the Plugin 
+        */
+       private function uninstall(){
+           PluginInstaller::deleteDb();
        }
  }
 

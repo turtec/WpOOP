@@ -16,19 +16,18 @@ class defaultController {
          * Menu-Item
          */
         public function setupAdminMenu(){
-           $theSlug=add_menu_page('My Page-Title',
+           $theSlug=add_menu_page(
+                    'My Page-Title',
                     'My Menu Title', 
                     'administrator', 
                     'mySlug',
                     array($this,'aCallbackMethod'), '',9);
          } 
-        
-        
+ 
         public function aCallbackMethod(){
             $thePath='/../viewsbackend/default.php';
             HTMLRenderer::renderHTML($thePath, $params);
-        }
-        
+        }    
 }
 
 ?>
