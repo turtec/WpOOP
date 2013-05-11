@@ -5,10 +5,9 @@
  *
  * @author Sascha Turowski <turtec.de>
  */
-class aController {
+class defaultController {
     
         public function __construct(){
-             
              add_action('admin_menu', array($this,'setupAdminMenu'));
         }
 

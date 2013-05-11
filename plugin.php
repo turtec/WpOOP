@@ -34,31 +34,14 @@ require_once 'framework/ControllerLoader.php';
          */
         private function init(){
              if(is_admin()){
-                 self::loadAdminController();
+                  $path='controllerbackend';
              }
              else{
-                 self::loadFrontendController();
+                 $path='controllerfrontend';
              }
+              self::loadController($path);
         }
  
-        
-        /**
-         * loads all Admin-Controller
-        **/
-        private function loadAdminController(){
-           $path='controllerbackend';
-           $this->loadController($path);
-        }
-        
-        
-         /**
-         * loads all Frontend-Controller
-        **/
-        private function loadFrontendController(){
-            $path='controllerfrontend';
-            $this->loadController($path);
-        }
-        
         private function loadController($path){
             $dir= plugin_dir_path(__FILE__);
             try{
@@ -68,9 +51,7 @@ require_once 'framework/ControllerLoader.php';
                 echo $ex->getMessage();
             }
        }
-        
-        
-     }
+ }
 
 WpOOP::getInstance();
 

@@ -36,7 +36,9 @@ class ControllerLoader {
                 }
                 else{
                    throw new ControllerClassNotFoundException('Controllerclass ' .
-                           $className . ' not found in file ' . $controllerPath, 0);
+                           $className . ' not found in file ' . $controllerPath . 
+                           ' Please check the Naming of classname and filename. 
+                             Both Names have to be equal', 0);
                 }
              }
          }
