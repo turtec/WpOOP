@@ -46,9 +46,8 @@ require_once 'framework/ControllerLoader.php';
          * loads all Admin-Controller
         **/
         private function loadAdminController(){
-            $dir= plugin_dir_path(__FILE__);
-            $path='controllerbackend';
-            ControllerLoader::loadControllers($path,$dir);
+           $path='controllerbackend';
+           $this->loadController($path);
         }
         
         
@@ -56,12 +55,21 @@ require_once 'framework/ControllerLoader.php';
          * loads all Frontend-Controller
         **/
         private function loadFrontendController(){
-            $dir= plugin_dir_path(__FILE__);
             $path='controllerfrontend';
-            ControllerLoader::loadControllers($path,$dir);
+            $this->loadController($path);
         }
         
-       
+        private function loadController($path){
+            $dir= plugin_dir_path(__FILE__);
+            try{
+                ControllerLoader::loadControllers($path,$dir);
+            }
+            catch(Exception $ex){
+                echo $ex->getMessage();
+            }
+       }
+        
+        
      }
 
 WpOOP::getInstance();

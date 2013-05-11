@@ -8,6 +8,9 @@
  * classes manually
  * @author Sascha Turowski <turtec.de>
  */
+
+require ('Exceptions/ControllerClassNotFoundException.php');
+
 class ControllerLoader {
       
        /**
@@ -26,8 +29,15 @@ class ControllerLoader {
                 $parts=explode('.', $fileName);
                 //get the classname by accessing the array
                 $className=$parts[0]; 
-                //load the class
-                $aCtl = new $className(); 
+                
+                if(class_exists($className)){
+                    //load the class
+                    $aCtl = new $className(); 
+                }
+                else{
+                   throw new ControllerClassNotFoundException('Controllerclass ' .
+                           $className . ' not found in file ' . $controllerPath, 0);
+                }
              }
          }
 }
