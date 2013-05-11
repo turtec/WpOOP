@@ -26,13 +26,9 @@ class aController {
         
         
         public function aCallbackMethod(){
-            
+            $thePath='/../viewsbackend/default.php';
+            HTMLRenderer::renderHTML($thePath, $params);
         }
-        
-        public function index(){
-            
-        }
-        
         
 }
 

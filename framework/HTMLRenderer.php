@@ -14,7 +14,7 @@ class HTMLRenderer {
     
      public static function renderHTML($thePath,$params){
           ob_start();
-	  include_once $path;
+	  include_once $thePath;
           $output = ob_get_clean();
 	  echo $output;
       }

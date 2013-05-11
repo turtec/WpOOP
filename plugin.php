@@ -61,7 +61,7 @@ require_once 'framework/HTMLRenderer.php';
         
         /**
          * initalize a class by a given $path
-         * the class name has be be the same 
+         * the class name has to be the same 
          * like the filename
          * @param type $path 
          */
